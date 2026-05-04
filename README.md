@@ -40,6 +40,7 @@ The contribution of this work is not the use of manifolds or directional analysi
 In this framework, multi-channel signals are interpreted as evolving trajectories on a local manifold, and early detection is achieved by analyzing the directional structure of these trajectories during transition phases, rather than relying on scalar deviations.
 
 To the best of the author's knowledge, this combination of manifold-based representation with directional transition modeling for early event detection has not been previously formalized.
+
 ---
 
 ## Conceptual Behavior
