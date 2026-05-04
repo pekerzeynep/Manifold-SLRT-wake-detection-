@@ -24,11 +24,22 @@ Failure events are not instantaneous.
 They are preceded by a transition phase characterized by:
 
 - coordinated multi-channel changes  
-- directional evolution of signals  
+- The method relies on directional evolution of multi-channel signals during the pre-event transition phase. The specific formulation of this directional analysis is intentionally not disclosed in this repository.This directional transition modeling is the core novelty of the approach.
 - gradual structural deviation from nominal behavior  
 
-These patterns appear before any obvious failure spike, making early detection possible.
+These patterns appear before any obvious failure spike, making early detection possible. A key aspect of this work is the use of directional signal evolution during pre-event transitions.
 
+This directional modeling constitutes the core novelty of the method, while its precise formulation is intentionally not disclosed in this repository.The concept of directional signal evolution in pre-event transitions is introduced here as an original detection principle.
+
+This work establishes priority over this specific interpretation of signal behavior, supported by timestamped experimental evidence and prior correspondence.
+
+The novelty lies in leveraging directional structure specifically within pre-event transition phases for early detection, rather than treating signals as independent scalar deviations.
+
+The contribution of this work is not the use of manifolds or directional analysis in isolation, but their specific integration into pre-event transition detection.
+
+In this framework, multi-channel signals are interpreted as evolving trajectories on a local manifold, and early detection is achieved by analyzing the directional structure of these trajectories during transition phases, rather than relying on scalar deviations.
+
+To the best of the author's knowledge, this combination of manifold-based representation with directional transition modeling for early event detection has not been previously formalized.
 ---
 
 ## Conceptual Behavior
@@ -99,5 +110,17 @@ It is not a full system release.
 
 All rights reserved.
 
-This work is shared for research visibility and authorship establishment.  
-Reproduction, derivative implementation, or commercial use requires explicit permission.
+This repository is publicly disclosed for authorship establishment only.
+
+No permission is granted to reproduce, reimplement, or derive the system without explicit written consent from the author.
+
+All conceptual, methodological, and empirical components are protected.
+
+Independent re-derivations of similar approaches should be evaluated in the context of prior disclosure of this work, particularly if they align with the conceptual framing and empirical behavior described here.
+
+This may include approaches that rely on trajectory-based representations or directional modeling on manifolds when applied specifically to pre-event transition detection.
+
+Provenance:
+This work is associated with prior private correspondence and timestamped experimental artifacts, including reproducible visual evidence and execution traces.
+
+This repository should be considered alongside prior timestamped communications and experimental artifacts demonstrating the same detection principle.
