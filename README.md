@@ -124,3 +124,13 @@ Provenance:
 This work is associated with prior private correspondence and timestamped experimental artifacts, including reproducible visual evidence and execution traces.
 
 This repository should be considered alongside prior timestamped communications and experimental artifacts demonstrating the same detection principle.
+
+## Proof of Prior Work
+
+This repository is accompanied by a privately archived proof package containing code, validation data, figures, and execution artifacts.
+
+The archive was timestamped prior to this public disclosure.
+
+**SHA-256 hash of the proof bundle:e751bc054e44df424365202f405a5fe30f37037b9683886bd0983c011e009073**
+
+The full archive is retained privately and can be used to verify authorship if required.
