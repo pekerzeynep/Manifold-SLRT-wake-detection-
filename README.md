@@ -55,24 +55,86 @@ This allows detection to occur ahead of conventional threshold-based systems.
 
 ---
 
-## Evidence
+## Simulation Layer and Evaluation
 
-The provided figures demonstrate:
+The system was evaluated under a structured simulation layer designed to reproduce realistic sensor and geometry failure modes observed in large-scale LiDAR–visual systems.
 
-- consistent early detection lead (~hundreds of milliseconds range)  
-- reliable detection without false positives in controlled tests  
-- clear separation between nominal and transition regimes  
-- inability of a calibrated baseline to detect the same early transition  
+The following perturbations were introduced:
 
-Included visuals:
+- camera–LiDAR desynchronization  
+- pose and extrinsic drift  
+- LiDAR dropout  
+- exposure flicker  
+- dynamic occlusions (moving occluders)  
+- glass and reflection artifacts  
+- loop-closure jitter  
+- textureless corridor collapse  
+- repetitive-structure aliasing  
+- PnP outlier cascades  
+- map staleness  
+- seasonal and domain drift  
 
-- single-event replay (transition detection example)  
-- aggregate detection lead summary  
-- baseline comparison  
-- separability (ROC)  
-- classification results  
+The objective was not to simplify the detection problem, but to approximate the conditions under which reconstruction and localization pipelines degrade in practice.
 
 ---
+
+## Baseline Setup
+
+Importantly, the baseline is not trivial or omitted. A full baseline family (including CuSum-style sequential detectors) was calibrated via grid search on a dedicated calibration split, and a tuned “champion” baseline was selected.
+
+All reported comparisons are therefore against a **strong, optimized baseline**, rather than a naive reference.
+
+---
+
+## Results
+
+Across both proxy tasks, the manifold-based detector:
+
+- achieves **0 false positives**, **0 missed events**, and **0 late detections**  
+- maintains a consistent early detection lead (~500–640 ms p50 range)  
+- demonstrates strong separability (**ROC AUC ≈ 0.998**, vs ~0.65 for the baseline)
+
+Median early-warning lead times:
+
+- **519.5 ms** (SiLVR-style reconstruction proxy)  
+- **567.8 ms** (designed to approximate failure modes observed in large-scale LiDAR–visual systems)  
+
+Trigger-window compute latency remained below:
+
+- **100 µs** (real-time constraint)
+
+---
+
+## Mechanism Illustration
+
+The single-event replay illustrates the detection mechanism:
+
+<img width="2383" height="1769" alt="single_event_detection kopyası" src="https://github.com/user-attachments/assets/7da940ff-12ea-4628-9620-d91878e370c8" />
+Behavioral signature: pre-event directional transition
+This approach reproduces the same pre-event directional transition behavior demonstrated in my prior timestamped work, regardless of differences in terminology or implementation details.
+
+In this example, the detector triggers on a structured **pre-event transition** in the internal proxy signal channels, rather than the final failure spike. This enables earlier activation compared to the baseline, which reacts only after observable degradation.
+
+*Note: This figure represents a single-event example. Aggregate benchmarks report median early-warning lead times in the ~500 ms range.*
+
+---
+
+## Key Takeaway
+
+The detector does not rely on the collapse of reconstruction or localization quality metrics.  
+Instead, it identifies the **geometric transition phase leading into failure**, providing early warning several hundred milliseconds before conventional systems respond.
+
+---
+
+## Disclaimer
+
+This evaluation does not use or redistribute any proprietary dataset.  
+All experiments are conducted on internally generated simulation proxies designed to approximate real-world conditions.
+
+## Note
+
+The detailed formulation, feature construction, and transition modeling logic are intentionally not disclosed in this repository.
+
 
 ## Evaluation Context
 
@@ -111,9 +173,9 @@ It is not a full system release.
 
 All rights reserved.
 
-This repository is publicly disclosed for authorship establishment only.
+This repository is publicly disclosed to establish authorship.
 
-No permission is granted to reproduce, reimplement, or derive the system without explicit written consent from the author.
+Use, reproduction, or derivative work requires explicit permission from the author.
 
 All conceptual, methodological, and empirical components are protected.
 
